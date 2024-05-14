@@ -1,9 +1,9 @@
 # riverpod_firebase_chat
 
-It's a Chat app built on Flutter & Firebase, with Riverpod. Built with Domain Driven, Feature First approach.
+It's a Chat app built on Flutter & Firebase, with Riverpod. Built in a Domain Driven, Feature First approach.
 
 ## Things not Done
-- Almost everything
+- Almost everything. This app doesn't make any sense as of yet.
 - Chat
 - Notifications (BTW, I used it in my MedicalEmergency app)
 - This README
