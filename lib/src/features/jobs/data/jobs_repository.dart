@@ -64,12 +64,14 @@ class JobsRepository {
       .snapshots()
       .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
 
-  Query<Job> queryJobs({required UserID uid}) =>
-      _firestore.collection(jobsPath(uid)).withConverter(
-            fromFirestore: (snapshot, _) =>
-                Job.fromMap(snapshot.data()!, snapshot.id),
-            toFirestore: (job, _) => job.toMap(),
-          );
+  Query<Job> queryJobs({required UserID uid}) => _firestore
+      .collection(jobsPath(uid))
+      .orderBy("sentAtMillis")
+      .withConverter(
+        fromFirestore: (snapshot, _) =>
+            Job.fromMap(snapshot.data()!, snapshot.id),
+        toFirestore: (job, _) => job.toMap(),
+      );
 
   Future<List<Job>> fetchJobs({required UserID uid}) async {
     final jobs = await queryJobs(uid: uid).get();

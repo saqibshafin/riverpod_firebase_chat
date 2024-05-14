@@ -20,9 +20,16 @@ class JobEntriesList extends ConsumerWidget {
       jobsEntriesListControllerProvider,
       (_, state) => state.showAlertDialogOnError(context),
     );
-    final jobEntriesQuery = ref.watch(jobEntriesQueryProvider(job.id));
+    // final jobEntriesQuery = ref.watch(jobEntriesQueryProvider(job.id));
+    final jobEntriesQuery = ref.watch(entriesQueryProvider(job.id));
     return FirestoreListView<Entry>(
       query: jobEntriesQuery,
+      emptyBuilder: (context) => const Center(child: Text('No data')),
+      errorBuilder: (context, error, stackTrace) => Center(
+        child: Text(error.toString()),
+      ),
+      loadingBuilder: (context) =>
+          const Center(child: CircularProgressIndicator()),
       itemBuilder: (context, doc) {
         final entry = doc.data();
         return DismissibleEntryListItem(

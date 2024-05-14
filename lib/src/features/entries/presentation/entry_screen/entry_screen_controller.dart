@@ -43,6 +43,7 @@ class EntryScreenController extends _$EntryScreenController {
         start: start,
         end: end,
         comment: comment,
+        sentAtMillis: DateTime.now().millisecondsSinceEpoch.toString(),
       );
       state = await AsyncValue.guard(
           () => repository.updateEntry(uid: currentUser.uid, entry: entry));
