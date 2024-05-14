@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore:depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:riverpod_firebase_chat/firebase_options.dart';
 import 'package:riverpod_firebase_chat/src/app.dart';
 import 'package:riverpod_firebase_chat/src/localization/string_hardcoded.dart';
 
@@ -14,6 +15,8 @@ Future<void> main() async {
   // * Register error handlers. For more info, see:
   // * https://docs.flutter.dev/testing/errors
   registerErrorHandlers();
+  // * Initialize Firebase
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // * Entry point of the app
   runApp(const ProviderScope(
     child: MyApp(),
