@@ -8,6 +8,11 @@ A new Flutter project.
 
 ## Any other relevant information that aids in understanding and navigating your project.
 
+### Important Links
+1. https://firebase.google.com/docs/cli#mac-linux-auto-script
+1. https://firebase.google.com/docs/flutter/setup?platform=ios
+1. https://firebase.google.com/docs/firestore/quickstart#dart
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
