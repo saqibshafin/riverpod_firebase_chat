@@ -42,10 +42,8 @@ For more info, follow this guide, go to [Important Links](#important-links).
 If you don't want to use FlutterFire CLI, follow these steps instead:
 
 - Register separate iOS, Android, and web apps in the Firebase project settings.
-- On Android, use `com.example.starter_architecture_flutter_firebase` as the package name.
-- then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_android_app) `google-services.json` into `android/app`.
-- On iOS, use `com.example.starterArchitectureFlutterFirebase` as the bundle ID.
-- then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_ios_app) `GoogleService-Info.plist` into `iOS/Runner`, and add it to the Runner target in Xcode.
+- On Android, use `com.shafin.riverpod_firebase_chat` as the package name.
+- Then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_android_app) `google-services.json` into `android/app`.
 
 ## Important Links
 1. https://firebase.google.com/docs/cli#mac-linux-auto-script
