@@ -29,8 +29,10 @@ class JobsRepository {
       });
 
   // update
+  // Future<void> updateJob({required UserID uid, required Job job}) =>
+  //     _firestore.doc(jobPath(uid, job.id)).update(job.toMap());
   Future<void> updateJob({required UserID uid, required Job job}) =>
-      _firestore.doc(jobPath(uid, job.id)).update(job.toMap());
+      _firestore.doc("users/$uid").update(job.toMap());
 
   // delete
   Future<void> deleteJob({required UserID uid, required JobID jobId}) async {
@@ -64,9 +66,17 @@ class JobsRepository {
       .snapshots()
       .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
 
+  // Query<Job> queryJobs({required UserID uid}) => _firestore
+  //     .collection(jobsPath(uid))
+  //     .orderBy("sentAtMillis")
+  //     .withConverter(
+  //       fromFirestore: (snapshot, _) =>
+  //           Job.fromMap(snapshot.data()!, snapshot.id),
+  //       toFirestore: (job, _) => job.toMap(),
+  //     );
   Query<Job> queryJobs({required UserID uid}) => _firestore
-      .collection(jobsPath(uid))
-      .orderBy("sentAtMillis")
+      .collection('users')
+      // .orderBy("sentAtMillis")
       .withConverter(
         fromFirestore: (snapshot, _) =>
             Job.fromMap(snapshot.data()!, snapshot.id),
@@ -76,6 +86,7 @@ class JobsRepository {
   Future<List<Job>> fetchJobs({required UserID uid}) async {
     final jobs = await queryJobs(uid: uid).get();
     return jobs.docs.map((doc) => doc.data()).toList();
+    // return <Job>[];
   }
 }
 

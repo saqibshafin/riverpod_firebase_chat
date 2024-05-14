@@ -24,21 +24,23 @@ class Job extends Equatable {
 
   factory Job.fromMap(Map<String, dynamic> data, String id) {
     final name = data['name'] as String;
-    final ratePerHour = data['ratePerHour'] as int;
-    final sentAtMillis = data['sentAtMillis'] as String;
+    // final ratePerHour = data['ratePerHour'] as int;
+    // final sentAtMillis = data['sentAtMillis'] as String;
     return Job(
       id: id,
       name: name,
-      ratePerHour: ratePerHour,
-      sentAtMillis: sentAtMillis,
+      // ratePerHour: ratePerHour,
+      // sentAtMillis: sentAtMillis,
+      ratePerHour: -1,
+      sentAtMillis: "1234567",
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'ratePerHour': ratePerHour,
-      'sentAtMillis': sentAtMillis,
+      // 'ratePerHour': ratePerHour,
+      // 'sentAtMillis': sentAtMillis,
     };
   }
 }

@@ -14,6 +14,7 @@ class CustomProfileScreen extends ConsumerWidget {
         title: const Text('Profile'),
       ),
       providers: authProviders,
+      // children: const [Text("123")],
     );
   }
 }

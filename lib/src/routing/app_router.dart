@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_firebase_chat/src/features/authentication/data/firebase_auth_repository.dart';
-import 'package:riverpod_firebase_chat/src/features/authentication/presentation/custom_profile_screen.dart';
 import 'package:riverpod_firebase_chat/src/features/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:riverpod_firebase_chat/src/features/entries/domain/entry.dart';
 import 'package:riverpod_firebase_chat/src/features/entries/presentation/entries_screen.dart';
@@ -17,6 +16,8 @@ import 'package:riverpod_firebase_chat/src/routing/app_startup.dart';
 import 'package:riverpod_firebase_chat/src/routing/go_router_refresh_stream.dart';
 import 'package:riverpod_firebase_chat/src/routing/not_found_screen.dart';
 import 'package:riverpod_firebase_chat/src/routing/scaffold_with_nested_navigation.dart';
+
+import '../features/authentication/presentation/profile_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -214,8 +215,10 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: '/account',
                 name: AppRoute.profile.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: CustomProfileScreen(),
+                pageBuilder: (context, state) => NoTransitionPage(
+                  // child: CustomProfileScreen(),
+                  child: ProfileScreen(
+                      name: authRepository.currentUser!.displayName ?? ""),
                 ),
               ),
             ],

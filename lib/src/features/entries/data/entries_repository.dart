@@ -5,7 +5,7 @@ import 'package:riverpod_firebase_chat/src/features/authentication/domain/app_us
 import 'package:riverpod_firebase_chat/src/features/entries/domain/entry.dart';
 import 'package:riverpod_firebase_chat/src/features/jobs/domain/job.dart';
 
-part 'entries_repository.g.dart';
+// part 'entries_repository.g.dart';
 
 class EntriesRepository {
   const EntriesRepository(this._firestore);
@@ -64,45 +64,33 @@ class EntriesRepository {
   }
 }
 
-// final entriesRepositoryProvider = Provider<EntriesRepository>((ref) {
-//   return EntriesRepository(FirebaseFirestore.instance);
-// });
-//
-@Riverpod(keepAlive: true)
-EntriesRepository entriesRepository(EntriesRepositoryRef ref) {
+final entriesRepositoryProvider = Provider<EntriesRepository>((ref) {
   return EntriesRepository(FirebaseFirestore.instance);
-}
+});
+//
+// @Riverpod(keepAlive: true)
+// EntriesRepository entriesRepository(EntriesRepositoryRef ref) {
+//   return EntriesRepository(FirebaseFirestore.instance);
+// }
 
-@riverpod
-Query<Entry> entriesQuery(EntriesQueryRef ref, JobID jobId) {
+final entriesQueryProvider =
+    Provider.autoDispose.family<Query<Entry>, JobID>((ref, jobId) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null when fetching jobs');
   }
   final repository = ref.watch(entriesRepositoryProvider);
   return repository.queryEntries(uid: user.uid, jobId: jobId);
-}
-
-// final jobEntriesQueryProvider =
-//     Provider.autoDispose.family<Query<Entry>, JobID>((ref, jobId) {
+});
+//
+// @riverpod
+// Query<Entry> entriesQuery(EntriesQueryRef ref, JobID jobId) {
 //   final user = ref.watch(firebaseAuthProvider).currentUser;
 //   if (user == null) {
 //     throw AssertionError('User can\'t be null when fetching jobs');
 //   }
 //   final repository = ref.watch(entriesRepositoryProvider);
 //   return repository.queryEntries(uid: user.uid, jobId: jobId);
-// });
+// }
 
-// final entriesRepositoryProvider = Provider<EntriesRepository>((ref) {
-//   return EntriesRepository(FirebaseFirestore.instance);
-// });
 
-// final jobEntriesQueryProvider =
-//     Provider.autoDispose.family<Query<Entry>, JobID>((ref, jobId) {
-//   final user = ref.watch(firebaseAuthProvider).currentUser;
-//   if (user == null) {
-//     throw AssertionError('User can\'t be null when fetching jobs');
-//   }
-//   final repository = ref.watch(entriesRepositoryProvider);
-//   return repository.queryEntries(uid: user.uid, jobId: jobId);
-// });
